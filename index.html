@@ -143,23 +143,26 @@
       </section>
 
       <section class="slide" id="aumentacion" tabindex="-1">
-        <div class="section-label">09 · Entrenamiento y aumento de datos</div>
-        <div class="two-columns">
+        <div class="section-label">09 · Implementación técnica y entrenamiento</div>
+        <div class="two-columns training-rubric-layout">
           <div>
-            <h2>Cómo evaluamos los modelos.</h2>
-            <div class="augmentation-list">
-              <p><span>↔</span><b>Volteo horizontal aleatorio</b></p>
-              <p><span>◐</span><b>Brillo aleatorio: ±30</b></p>
-              <p><span>◑</span><b>Contraste aleatorio: 0,80–1,25</b></p>
+            <h2>Configuración reproducible.</h2>
+            <div class="technical-config">
+              <article><small>Arquitectura</small><b>MobileNetV2</b><span>Pesos ImageNet · cabeza binaria</span></article>
+              <article><small>Entrada</small><b>224 × 224 × 3</b><span>RGB · plástico / vidrio</span></article>
+              <article><small>Regularización</small><b>Lote 32 · dropout 0,30</b><span>Pesos de clase balanceados</span></article>
+              <article><small>Reproducibilidad</small><b>Semillas 42 / 2</b><span>Partición / entrenamiento</span></article>
             </div>
           </div>
-          <div class="training-steps">
-            <p><b>1. Cabeza</b><span>Base preentrenada congelada.</span></p>
-            <p><b>2. Ajuste fino</b><span>Optimización del mejor punto.</span></p>
-            <p><b>3. Métricas</b><span>Loss, accuracy, macro-F1 y matriz por clase.</span></p>
-            <p><b>4. Selección</b><span>Solo validación; la prueba reservada permanece intacta.</span></p>
+          <div class="training-steps rubric-steps">
+            <p><b>1. Cabeza</b><span>Adam 1×10<sup>−3</sup> · máximo 15 épocas · base congelada.</span></p>
+            <p><b>2. Ajuste fino</b><span>Adam 1×10<sup>−5</sup> · máximo 25 épocas.</span></p>
+            <p><b>3. Control</b><span>Early stopping por macro-F1 · paciencia 6.</span></p>
+            <p><b>4. Función objetivo</b><span>Entropía cruzada categórica dispersa.</span></p>
+            <p><b>5. Aumento</b><span>Volteo horizontal · brillo ±30 · contraste 0,80–1,25.</span></p>
           </div>
         </div>
+        <p class="method-note rubric-note">Aumento aplicado solo a entrenamiento. El mejor checkpoint se selecciona con validación; la prueba reservada permanece intacta.</p>
         <p class="slide-number">10 / 16</p>
       </section>
 
@@ -219,7 +222,12 @@
             <span><i class="key-dash"></i>inicio del ajuste fino</span>
           </div>
         </div>
-        <p class="source-note">Gráfica real del pipeline reproducible: loss, accuracy y macro-F1 por época. Evidencia experimental; no representa al artefacto histórico activo.</p>
+        <div class="curve-insights" aria-label="Interpretación técnica de las curvas">
+          <article><small>Mejor checkpoint</small><b>Época 18 · macro-F1 91,45 %</b></article>
+          <article><small>Lectura crítica</small><b>≈99 % train vs. 91,46 % validación</b><span>La brecha y las oscilaciones indican riesgo de sobreajuste.</span></article>
+          <article><small>Causa y mejora</small><b>Transparencias y reflejos</b><span>Ampliar ejemplos difíciles y conservar el checkpoint, no la última época.</span></article>
+        </div>
+        <p class="source-note curve-source">Gráfica real del pipeline reproducible; evidencia experimental del reentrenamiento, no del artefacto histórico activo.</p>
         <p class="slide-number">13 / 16</p>
       </section>
 

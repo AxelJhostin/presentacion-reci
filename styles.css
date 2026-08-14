@@ -193,6 +193,20 @@ h3 { margin-bottom: .35rem; font-size: clamp(1rem, 1.4vw, 1.35rem); }
 .architecture-branch b { color: var(--orange); text-transform: uppercase; letter-spacing: .05em; }
 .flow-five { grid-template-columns: repeat(5, 1fr); }
 
+.training-rubric-layout { grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch; }
+.training-rubric-layout h2 { font-size: clamp(2rem, 3.45vw, 3.9rem); }
+.technical-config { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+.technical-config article { min-height: 88px; padding: .75rem .9rem; background: #eff9e8; border-top: 4px solid var(--green); box-shadow: var(--shadow); }
+.technical-config article:nth-child(even) { border-top-color: var(--orange); }
+.technical-config small, .technical-config b, .technical-config span { display: block; }
+.technical-config small { margin-bottom: .22rem; color: var(--orange); font-size: clamp(.58rem, .7vw, .67rem); font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+.technical-config b { color: var(--green-dark); font-size: clamp(.76rem, 1.02vw, .96rem); }
+.technical-config span { margin-top: .22rem; color: var(--muted); font-size: clamp(.61rem, .78vw, .73rem); line-height: 1.25; }
+.rubric-steps { padding: 0; }
+.rubric-steps p { grid-template-columns: 135px 1fr; padding: .58rem .85rem; font-size: clamp(.68rem, .87vw, .82rem); }
+.rubric-steps sup { font-size: .7em; }
+.rubric-note { margin-top: .8rem; padding: .55rem .8rem; background: rgba(220,235,215,.62); border-left: 4px solid var(--orange); }
+
 .operational-viz { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .model-card { position: relative; padding: 1.35rem 1.5rem 1.2rem; background: #eff9e8; border-top: 7px solid var(--green); box-shadow: var(--shadow); clip-path: polygon(0 4%, 4% 0, 98% 2%, 100% 8%, 97% 96%, 93% 100%, 3% 98%, 0 92%); }
 .backup-model { border-top-color: var(--orange); background: #f7ead0; }
@@ -211,11 +225,19 @@ h3 { margin-bottom: .35rem; font-size: clamp(1rem, 1.4vw, 1.35rem); }
 
 .curve-panel { position: relative; padding: .7rem .7rem .35rem; background: white; border: 1px solid var(--line); box-shadow: var(--shadow); transform: rotate(-.35deg); }
 .curve-panel::before, .matrix-figure::before { content: ""; position: absolute; z-index: 2; top: -10px; left: 44%; width: 110px; height: 25px; background: rgba(232, 208, 155, .72); transform: rotate(-2deg); }
-.curve-panel img { display: block; width: 100%; max-height: 54vh; object-fit: contain; }
+.curve-panel img { display: block; width: 100%; max-height: 43vh; object-fit: contain; }
 .chart-key { display: flex; justify-content: center; gap: 1.5rem; padding: .25rem 0 .1rem; color: var(--muted); font-size: .68rem; font-weight: 800; }
 .chart-key span { display: flex; align-items: center; gap: .35rem; }
 .chart-key i { display: block; width: 22px; height: 3px; }
 .key-blue { background: #1874b4; }.key-orange { background: #ff7900; }.key-dash { border-top: 3px dashed #9a9a9a; }
+.curve-insights { display: grid; grid-template-columns: .8fr 1.1fr 1.1fr; gap: .6rem; margin-top: .55rem; }
+.curve-insights article { padding: .5rem .7rem; background: rgba(239,249,232,.86); border-left: 4px solid var(--green); box-shadow: 0 6px 16px rgba(43,79,52,.08); }
+.curve-insights article:last-child { border-left-color: var(--orange); background: #f7ead0; }
+.curve-insights small, .curve-insights b, .curve-insights span { display: block; }
+.curve-insights small { margin-bottom: .18rem; color: var(--orange); font-size: clamp(.52rem, .62vw, .6rem); font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
+.curve-insights b { color: var(--green-dark); font-size: clamp(.64rem, .78vw, .74rem); line-height: 1.18; }
+.curve-insights span { margin-top: .14rem; color: var(--muted); font-size: clamp(.53rem, .65vw, .61rem); line-height: 1.18; }
+.curve-source { margin-top: .38rem; font-size: clamp(.54rem, .67vw, .63rem); }
 
 .evaluation-slide h2 { margin-bottom: .55rem; font-size: clamp(1.9rem, 3.2vw, 3.6rem); }
 .evaluation-layout { display: grid; grid-template-columns: .92fr 1.08fr; gap: 1.5rem; align-items: stretch; }
@@ -261,6 +283,7 @@ h3 { margin-bottom: .35rem; font-size: clamp(1rem, 1.4vw, 1.35rem); }
   .flow-five, .operational-viz, .evaluation-layout, .evidence-grid.four, .closing-grid { grid-template-columns: 1fr; }
   .architecture-branch { align-items: flex-start; flex-direction: column; }
   .curve-panel img, .matrix-figure img { max-height: none; }
+  .training-rubric-layout, .technical-config, .curve-insights { grid-template-columns: 1fr; }
   .evaluation-metrics { grid-template-columns: 1fr; }
   .evaluation-metrics .general-metrics { grid-column: auto; grid-template-columns: 1fr; }
 }
