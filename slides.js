@@ -6,6 +6,11 @@
   slides.forEach((slide, index) => {
     const number = slide.querySelector('.slide-number');
     if (number) number.textContent = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+    const label = slide.querySelector('.section-label');
+    if (label) {
+      const topic = label.textContent.split('·').slice(1).join('·').trim();
+      label.textContent = `${String(index).padStart(2, '0')} · ${topic}`;
+    }
   });
   let current = Math.max(0, slides.findIndex((slide) => slide.classList.contains('is-active')));
   let wheelLocked = false;
