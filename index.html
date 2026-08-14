@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Presentación técnica del MVP RECI." />
+    <title>RECI | Presentación técnica</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="deck">
+      <section class="slide hero is-active" id="portada" tabindex="-1">
+        <div class="hero-copy">
+          <p class="eyebrow">Proyecto integrador · 2026</p>
+          <h1>RECI</h1>
+          <p class="hero-tagline">Sistema inteligente de reciclaje asistido</p>
+          <p class="hero-subtitle">Visión artificial · Sistema experto · Robótica · Plataforma web</p>
+          <p class="hero-detail">Clasificación segura de plástico y vidrio.</p>
+        </div>
+        <p class="slide-number">01 / 16</p>
+      </section>
+
+      <section class="slide" id="problematica" tabindex="-1">
+        <div class="section-label">01 · Problemática</div>
+        <div class="two-columns statement-layout">
+          <div>
+            <h2>El reciclaje falla cuando los residuos se mezclan.</h2>
+            <p class="lead">La contaminación cruzada entre plástico y vidrio reduce el aprovechamiento y vuelve más lento el proceso.</p>
+          </div>
+          <div class="problem-points">
+            <article><span>01</span><p>El usuario no siempre reconoce el material correctamente.</p></article>
+            <article><span>02</span><p>El depósito convencional no orienta ni confirma la acción.</p></article>
+            <article><span>03</span><p>Los procesos manuales y la falta de retroalimentación reducen la motivación.</p></article>
+          </div>
+        </div>
+        <p class="slide-number">02 / 16</p>
+      </section>
+
+      <section class="slide" id="justificacion" tabindex="-1">
+        <div class="section-label">02 · Justificación</div>
+        <h2>¿Por qué RECI?</h2>
+        <div class="three-columns pillars">
+          <article><div class="icon">◎</div><h3>Separación correcta</h3><p>Orienta al usuario desde el momento del depósito.</p></article>
+          <article><div class="icon">⌁</div><h3>Educación e incentivo</h3><p>Hace visible la decisión y devuelve una respuesta inmediata.</p></article>
+          <article><div class="icon">↗</div><h3>MVP medible</h3><p>Integra automatización, experiencia web y seguimiento dentro del campus.</p></article>
+        </div>
+        <p class="callout">RECI busca reducir errores de clasificación y mejorar la experiencia de reciclar.</p>
+        <p class="slide-number">03 / 16</p>
+      </section>
+
+      <section class="slide" id="integracion" tabindex="-1">
+        <div class="section-label">03 · Integración del proyecto</div>
+        <h2>Un proyecto integrador.</h2>
+        <p class="slide-kicker">Cada materia aporta una parte esencial del MVP.</p>
+        <div class="integration-grid">
+          <article><b>Sistemas expertos</b><span>193 reglas y decisión segura.</span></article>
+          <article><b>Inteligencia artificial</b><span>Clasificación visual reproducible.</span></article>
+          <article><b>Microcontroladores</b><span>Cámara, sensores y compuertas.</span></article>
+          <article><b>Plataforma web</b><span>Llamadas, puntos, QR y datos.</span></article>
+          <article><b>Gestión del proyecto</b><span>Alcance, presupuesto, riesgos y planificación.</span></article>
+        </div>
+        <p class="slide-number">04 / 16</p>
+      </section>
+
+      <section class="slide" id="arquitectura" tabindex="-1">
+        <div class="section-label">04 · Arquitectura general</div>
+        <h2>Arquitectura híbrida de RECI.</h2>
+        <div class="architecture-flow" role="img" aria-label="Arquitectura de RECI desde la captura hasta las compuertas">
+          <article><span class="step">1</span><b>Usuario + cámara</b><small>ESP32-CAM OV3660<br />3 capturas QVGA</small></article>
+          <span class="arrow">→</span>
+          <article><span class="step">2</span><b>Servicio de visión</b><small>Proveedor + sistema experto<br />MobileNetV2 local</small></article>
+          <span class="arrow">→</span>
+          <article><span class="step">3</span><b>Política de 6 votos</b><small>Plástico · vidrio<br />o desconocido</small></article>
+          <span class="arrow">→</span>
+          <article><span class="step">4</span><b>Mega + actuadores</b><small>UART · servos<br />compuerta segura</small></article>
+        </div>
+        <div class="architecture-branch"><b>Plataforma web</b><span>Llamadas al robot · puntos · QR · seguimiento</span></div>
+        <p class="callout">La IA no abre directamente una compuerta: primero pasa por una política de decisión segura.</p>
+        <p class="slide-number">05 / 16</p>
+      </section>
+
+      <section class="slide" id="flujo" tabindex="-1">
+        <div class="section-label">05 · Flujo de funcionamiento</div>
+        <h2>De la cámara a la compuerta.</h2>
+        <ol class="timeline flow-five">
+          <li><b>Captura</b><span>Tres fotografías QVGA del residuo.</span></li>
+          <li><b>Diagnóstico</b><span>Dos señales independientes por foto.</span></li>
+          <li><b>Votación</b><span>Se consolidan seis votos.</span></li>
+          <li><b>Orden</b><span>Solo una decisión válida emite <code>CMD:CLASSIFY</code>.</span></li>
+          <li><b>Acción</b><span>El Mega abre una compuerta y luego la cierra.</span></li>
+        </ol>
+        <p class="safety-line">Duda · error · empate no resoluble · respuesta incompleta → <b>desconocido, sin apertura</b></p>
+        <p class="slide-number">06 / 16</p>
+      </section>
+
+      <section class="slide" id="tecnologia" tabindex="-1">
+        <div class="section-label">06 · Tecnologías y comunicación</div>
+        <div class="two-columns">
+          <div>
+            <h2>Tecnologías del MVP.</h2>
+            <ul class="clean-list">
+              <li><b>ESP32-CAM AI Thinker + OV3660</b> para captura.</li>
+              <li><b>Arduino Mega 2560</b> para sensores, rutas y compuertas.</li>
+              <li><b>Python, FastAPI y TensorFlow Lite</b> para visión local.</li>
+              <li><b>Next.js, Supabase y API web</b> para interacción y datos.</li>
+            </ul>
+          </div>
+          <div class="wiring-card">
+            <p class="eyebrow">UART bidireccional segura</p>
+            <p><b>ESP32 GPIO14/TX</b> → <b>Mega D17/RX2</b></p>
+            <p><b>Mega D16/TX2</b> → <b>divisor 1 kΩ / 2 kΩ</b> → <b>ESP32 GPIO13/RX</b></p>
+            <p><b>Servos:</b> vidrio D3 · plástico D4</p>
+            <strong>El divisor protege al ESP32 frente a los 5 V del Mega.</strong>
+          </div>
+        </div>
+        <p class="slide-number">07 / 16</p>
+      </section>
+
+      <section class="slide" id="sistema-experto" tabindex="-1">
+        <div class="section-label">07 · Sistema experto y política de decisión</div>
+        <h2>Seis votos, una decisión explicable.</h2>
+        <div class="vote-layout">
+          <div class="vote-source provider"><h3>Proveedor + sistema experto</h3><div class="vote-dots"><i>1</i><i>2</i><i>3</i></div><p>Tres respuestas: plástico, vidrio o desconocido.</p></div>
+          <div class="vote-plus">+</div>
+          <div class="vote-source local"><h3>MobileNetV2 local</h3><div class="vote-dots"><i>1</i><i>2</i><i>3</i></div><p>Tres votos binarios sobre las mismas capturas.</p></div>
+          <div class="vote-result"><span>6</span><b>VOTOS</b><small>Una salida segura</small></div>
+        </div>
+        <div class="policy-note">Las abstenciones no suman. En empate decide la mayoría del proveedor+sistema experto. Si sus tres respuestas son desconocidas, el modelo local necesita unanimidad 3/3. Si no hay evidencia suficiente: <b>desconocido</b>.</div>
+        <p class="slide-number">08 / 16</p>
+      </section>
+
+      <section class="slide" id="datos" tabindex="-1">
+        <div class="section-label">08 · Dataset y metodología experimental</div>
+        <h2>Entrenamiento reproducible.</h2>
+        <div class="dataset-layout">
+          <article class="dataset train"><span>17.630</span><b>Entrenamiento</b><small>Solo aquí se aplica aumento de datos</small></article>
+          <article class="dataset validation"><span>199</span><b>Validación</b><small>100 plástico · 99 vidrio</small></article>
+          <article class="dataset test"><span>200</span><b>Prueba reservada</b><small>Sin usar para elegir modelo</small></article>
+          <article class="dataset audit"><span>1</span><b>Auditoría externa</b><small>Fuera de la evaluación</small></article>
+        </div>
+        <p class="method-note">Imágenes indexadas por SHA-256 · división fija por sesión ESP32 · semilla de partición 42 · nueve corridas: tres arquitecturas × tres semillas.</p>
+        <p class="slide-number">09 / 16</p>
+      </section>
+
+      <section class="slide" id="aumentacion" tabindex="-1">
+        <div class="section-label">09 · Entrenamiento y aumento de datos</div>
+        <div class="two-columns">
+          <div>
+            <h2>Cómo evaluamos los modelos.</h2>
+            <div class="augmentation-list">
+              <p><span>↔</span><b>Volteo horizontal aleatorio</b></p>
+              <p><span>◐</span><b>Brillo aleatorio: ±30</b></p>
+              <p><span>◑</span><b>Contraste aleatorio: 0,80–1,25</b></p>
+            </div>
+          </div>
+          <div class="training-steps">
+            <p><b>1. Cabeza</b><span>Base preentrenada congelada.</span></p>
+            <p><b>2. Ajuste fino</b><span>Optimización del mejor punto.</span></p>
+            <p><b>3. Métricas</b><span>Loss, accuracy, macro-F1 y matriz por clase.</span></p>
+            <p><b>4. Selección</b><span>Solo validación; la prueba reservada permanece intacta.</span></p>
+          </div>
+        </div>
+        <p class="slide-number">10 / 16</p>
+      </section>
+
+      <section class="slide" id="resultados" tabindex="-1">
+        <div class="section-label">10 · Resultados experimentales</div>
+        <h2>Resultados de los nueve experimentos.</h2>
+        <div class="results-grid">
+          <div class="bar-chart" role="img" aria-label="Macro-F1 promedio de validación Keras float32 por arquitectura">
+            <p class="chart-label">Macro-F1 promedio · validación Keras float32</p>
+            <div class="bar-row"><span>EfficientNet-B0</span><div class="bar-track"><i style="--value:87.75%"></i></div><b>87,75 %</b></div>
+            <div class="bar-row"><span>MobileNetV2</span><div class="bar-track"><i style="--value:90.28%"></i></div><b>90,28 %</b></div>
+            <div class="bar-row winner"><span>MobileNetV3-Large</span><div class="bar-track"><i style="--value:93.63%"></i></div><b>93,63 %</b></div>
+          </div>
+          <div class="metric-summary">
+            <p><b>9</b> corridas válidas</p>
+            <p><b>3</b> arquitecturas</p>
+            <p><b>3</b> semillas por arquitectura</p>
+            <small>El 93,63 % pertenece a validación controlada en Keras float32; no es el rendimiento del modelo desplegado.</small>
+          </div>
+        </div>
+        <p class="callout">Una métrica alta en Keras no garantiza el mismo comportamiento en TFLite ni en la cámara real.</p>
+        <p class="slide-number">11 / 16</p>
+      </section>
+
+      <section class="slide" id="operacion" tabindex="-1">
+        <div class="section-label">11 · Evaluación TFLite y pruebas operativas</div>
+        <h2>Del laboratorio al hardware real.</h2>
+        <div class="operational-viz" role="img" aria-label="Comparación operativa de MobileNetV2 float32 activo y MobileNetV3-Large INT8 de respaldo">
+          <article class="model-card active-model">
+            <div class="model-state">ACTIVO · corrida histórica run_20260721_2129</div>
+            <h3>MobileNetV2 · TFLite float32</h3>
+            <div class="metric-row"><span>Accuracy</span><b>71,60 %</b><i style="--value:71.6%"></i></div>
+            <div class="metric-row"><span>Macro-F1</span><b>71,25 %</b><i style="--value:71.25%"></i></div>
+            <div class="triplet-score"><b>75,15 %</b><span>mayoría de tres capturas</span></div>
+          </article>
+          <article class="model-card backup-model">
+            <div class="model-state">RESPALDO · no desplegado</div>
+            <h3>MobileNetV3-Large · TFLite INT8</h3>
+            <div class="metric-row"><span>Accuracy</span><b>57,10 %</b><i style="--value:57.1%"></i></div>
+            <div class="metric-row"><span>Macro-F1</span><b>57,09 %</b><i style="--value:57.09%"></i></div>
+            <div class="triplet-score"><b>59,09 %</b><span>mayoría de tres capturas</span></div>
+          </article>
+        </div>
+        <p class="source-note">Comparación operativa sobre 1.000 capturas OV3660/QVGA. No corresponde a la prueba reservada de 200 imágenes.</p>
+        <p class="callout">MobileNetV2 permanece activo porque conservó mejor calidad en el pipeline real.</p>
+        <p class="slide-number">12 / 16</p>
+      </section>
+
+      <section class="slide" id="curvas" tabindex="-1">
+        <div class="section-label">12 · Curvas reales de entrenamiento</div>
+        <h2>MobileNetV2 reentrenado · semilla 2.</h2>
+        <div class="curve-panel">
+          <img src="assets/charts/mobilenetv2-seed2-curvas.png" alt="Curvas reales de loss, accuracy y macro-F1 del MobileNetV2 reentrenado con semilla 2" />
+          <div class="chart-key">
+            <span><i class="key-blue"></i>entrenamiento</span>
+            <span><i class="key-orange"></i>validación</span>
+            <span><i class="key-dash"></i>inicio del ajuste fino</span>
+          </div>
+        </div>
+        <p class="source-note">Gráfica real del pipeline reproducible: loss, accuracy y macro-F1 por época. Evidencia experimental; no representa al artefacto histórico activo.</p>
+        <p class="slide-number">13 / 16</p>
+      </section>
+
+      <section class="slide evaluation-slide" id="evaluacion-clase" tabindex="-1">
+        <div class="section-label">13 · Evaluación por clase</div>
+        <h2>Evaluación del MobileNetV2 reentrenado.</h2>
+        <p class="slide-kicker">Semilla 2 · validación fija de 199 imágenes · partición con semilla 42</p>
+        <div class="evaluation-layout">
+          <figure class="matrix-figure">
+            <img src="assets/charts/mobilenetv2-seed2-matriz-confusion.png" alt="Matriz de confusión: plástico real 89 plástico y 11 vidrio; vidrio real 6 plástico y 93 vidrio" />
+            <figcaption><b>182 / 199</b> imágenes correctamente clasificadas</figcaption>
+          </figure>
+          <div class="evaluation-metrics">
+            <article class="general-metrics"><h3>Métricas generales</h3><p><b>91,46 %</b><span>Accuracy</span></p><p><b>91,45 %</b><span>Macro-F1</span></p><small>199 imágenes evaluadas</small></article>
+            <article><h3>Plástico</h3><div class="inline-metrics"><span><b>93,68 %</b>Precision</span><span><b>89,00 %</b>Recall</span><span><b>91,28 %</b>F1</span></div><small>Soporte: 100 imágenes</small></article>
+            <article><h3>Vidrio</h3><div class="inline-metrics"><span><b>89,42 %</b>Precision</span><span><b>93,94 %</b>Recall</span><span><b>91,63 %</b>F1</span></div><small>Soporte: 99 imágenes</small></article>
+          </div>
+        </div>
+        <p class="interpretation">El MobileNetV2 reentrenado mantuvo un rendimiento equilibrado entre plástico y vidrio. El error más frecuente fue clasificar <b>11 imágenes de plástico como vidrio</b>.</p>
+        <p class="source-note mandatory-note">Resultados de validación del MobileNetV2 reentrenado con semilla 2. No corresponden a las métricas operativas del modelo histórico activo.</p>
+        <p class="slide-number">14 / 16</p>
+      </section>
+
+      <section class="slide" id="proteccion" tabindex="-1">
+        <div class="section-label">14 · Calidad y seguridad</div>
+        <h2>Protección del MVP.</h2>
+        <p class="slide-kicker">Pruebas automatizadas, reglas verificables y comportamiento seguro.</p>
+        <div class="evidence-grid four">
+          <article><b>49 / 49</b><span>Pruebas automatizadas del servicio de visión aprobadas.</span></article>
+          <article><b>118 / 118</b><span>Casos formales del sistema experto aprobados.</span></article>
+          <article><b>216 / 216</b><span>Combinaciones con paridad entre Python y firmware.</span></article>
+          <article class="zero-card"><b>0</b><span>Órdenes de compuerta ante error, respuesta incompleta o desconocido.</span></article>
+        </div>
+        <div class="protection-strip">El cambio o comparación de modelos no modifica <b>las reglas, la política de votación, el firmware ni las condiciones de seguridad.</b></div>
+        <p class="slide-number">15 / 16</p>
+      </section>
+
+      <section class="slide closing" id="cierre" tabindex="-1">
+        <div class="section-label">15 · Cierre y propuestas de mejora</div>
+        <h2>RECI decide con evidencia.</h2>
+        <p class="slide-kicker">Visión artificial · sistema experto · robótica · plataforma web</p>
+        <div class="closing-grid">
+          <article>
+            <h3>Estado actual</h3>
+            <ul>
+              <li><b>MobileNetV2 TFLite float32</b> permanece activo.</li>
+              <li>MobileNetV3-Large INT8 se conserva como respaldo.</li>
+              <li>El sistema experto tiene 118/118 casos formales aprobados.</li>
+              <li>La integración Python–firmware mantiene paridad en 216 combinaciones.</li>
+              <li>Los escenarios de error no generan órdenes de apertura.</li>
+              <li>El MVP integra cámara, visión, backend y actuadores.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Próximos pasos</h3>
+            <ul>
+              <li>Ejecutar una sola vez la prueba reservada de 200 imágenes.</li>
+              <li>Mejorar la estrategia de cuantización de los modelos candidatos.</li>
+              <li>Incorporar más ejemplos de plástico transparente y vidrio con reflejos.</li>
+              <li>Ampliar pruebas con iluminación, fondos y posiciones diferentes.</li>
+              <li>Evaluar el sistema completo durante un piloto controlado.</li>
+              <li>Registrar precisión, latencia, abstenciones y errores.</li>
+              <li>Mantener reversión antes de reemplazar el modelo activo.</li>
+            </ul>
+          </article>
+        </div>
+        <p class="closing-line">No elegimos únicamente el modelo con la cifra más alta: elegimos el artefacto que conserva su calidad dentro del sistema real.</p>
+        <p class="slide-number">16 / 16</p>
+      </section>
+    </main>
+
+    <div class="deck-controls" aria-label="Controles de presentación">
+      <button class="deck-button" type="button" data-action="previous" aria-label="Diapositiva anterior">←</button>
+      <span class="deck-progress" aria-live="polite">1 / 16</span>
+      <button class="deck-button" type="button" data-action="next" aria-label="Diapositiva siguiente">→</button>
+    </div>
+    <p class="deck-help">← → para navegar · rueda o desliza</p>
+    <script src="slides.js"></script>
+  </body>
+</html>
