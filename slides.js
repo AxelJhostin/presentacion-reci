@@ -3,6 +3,10 @@
   const progress = document.querySelector('.deck-progress');
   const navLinks = [...document.querySelectorAll('.deck-header a[href^="#"]')];
   const total = slides.length;
+  slides.forEach((slide, index) => {
+    const number = slide.querySelector('.slide-number');
+    if (number) number.textContent = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+  });
   let current = Math.max(0, slides.findIndex((slide) => slide.classList.contains('is-active')));
   let wheelLocked = false;
   let touchStartX = 0;
